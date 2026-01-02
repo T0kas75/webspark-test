@@ -21,7 +21,7 @@
     patterns: "www.conf"
     file_type: file
     recurse: true
-  register: php_pool_find
+  register: web_php_pool_find
   when: ansible_facts.os_family == "Debian"
 
 - name: Fail if php-fpm pool config not found
@@ -29,13 +29,13 @@
     msg: "Cannot find PHP-FPM pool config under /etc/php/*/fpm/pool.d/www.conf"
   when:
     - ansible_facts.os_family == "Debian"
-    - php_pool_find.matched | int == 0
+    - web_php_pool_find.matched | int == 0
 
 - name: Set php-fpm service and socket
   ansible.builtin.set_fact:
-    php_fpm_version: "{{ (php_pool_find.files[0].path | regex_search('^/etc/php/([0-9.]+)/fpm/', '\\1'))[0] }}"
-    php_fpm_service: "php{{ (php_pool_find.files[0].path | regex_search('^/etc/php/([0-9.]+)/fpm/', '\\1'))[0] }}-fpm"
-    php_fpm_socket: "/run/php/php{{ (php_pool_find.files[0].path | regex_search('^/etc/php/([0-9.]+)/fpm/', '\\1'))[0] }}-fpm.sock"
+    web_php_fpm_version: "{{ (web_php_pool_find.files[0].path | regex_search('^/etc/php/([0-9.]+)/fpm/', '\\1'))[0] }}"
+    web_php_fpm_service: "php{{ (web_php_pool_find.files[0].path | regex_search('^/etc/php/([0-9.]+)/fpm/', '\\1'))[0] }}-fpm"
+    web_php_fpm_socket: "/run/php/php{{ (web_php_pool_find.files[0].path | regex_search('^/etc/php/([0-9.]+)/fpm/', '\\1'))[0] }}-fpm.sock"
   when: ansible_facts.os_family == "Debian"
 
 - name: Ensure web root exists
@@ -85,6 +85,6 @@
 
 - name: Ensure php-fpm running and enabled
   ansible.builtin.service:
-    name: "{{ php_fpm_service }}"
+    name: "{{ web_php_fpm_service }}"
     state: started
     enabled: true

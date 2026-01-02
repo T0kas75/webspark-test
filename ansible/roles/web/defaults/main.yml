@@ -1,2 +1,2 @@
-app_env: dev
+web_app_env: dev
 web_root: /var/www/html

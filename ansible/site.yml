@@ -5,4 +5,4 @@
   roles:
     - role: web
       vars:
-        app_env: dev
+        web_app_env: dev
