@@ -44,10 +44,10 @@ terraform apply var="project_name=your_profect_name"
 ### Validate
 
 curl http://localhost:8080/healthz
-### {"status":"ok","service":"nginx","env":"dev"}
+{"status":"ok","service":"nginx","env":"dev"}
 
 curl http://localhost:8080/
-### HTML page: "It works on Terraform" + APP_ENV value
+HTML page: "It works on Terraform" + APP_ENV value
 
 ### Destroy
 terraform destroy -var="project_name=webspark" 
@@ -75,10 +75,10 @@ ansible-playbook -i inventory.ini site.yml --ask-become-pass
 
 ### Validate
 curl http://localhost:8081/healthz
-# {"status":"ok","service":"nginx","env":"dev"}
+{"status":"ok","service":"nginx","env":"dev"}
 
 curl http://localhost:8081/
-# HTML page: "It works on Ansible" + APP_ENV value
+HTML page: "It works on Ansible" + APP_ENV value
 
 
 
@@ -104,6 +104,6 @@ Open GitHub repository → Actions tab:
 
 Links to successful runs:
 
-- Terraform workflow run: [<PASTE_LINK_HERE>](https://github.com/T0kas75/webspark-test/actions/runs/20664203901/job/59332984804)
-- Ansible workflow run: [<PASTE_LINK_HERE>](https://github.com/T0kas75/webspark-test/actions/runs/20664470084/job/59333789630)
+- Terraform workflow run, successful example: https://github.com/T0kas75/webspark-test/actions/runs/20664203901/job/59332984804
+- Ansible workflow run, successful example: https://github.com/T0kas75/webspark-test/actions/runs/20664470084/job/59333789630
 
