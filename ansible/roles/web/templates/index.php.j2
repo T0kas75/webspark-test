@@ -1,0 +1,12 @@
+<?php
+header('Content-Type: text/html; charset=utf-8');
+$env = '{{ app_env }}';
+?>
+<!doctype html>
+<html>
+  <head><title>PHP OK</title></head>
+  <body>
+    <h1>It works on Ansible</h1>
+    <p>APP_ENV: <?php echo htmlspecialchars($env, ENT_QUOTES, 'UTF-8'); ?></p>
+  </body>
+</html>

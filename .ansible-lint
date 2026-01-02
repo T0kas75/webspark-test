@@ -1,0 +1,6 @@
+profile: basic
+exclude_paths:
+  - terraform/.terraform/
+  - terraform/.terraform.lock.hcl
+  - terraform/tfplan
+  - .git/

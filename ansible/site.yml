@@ -1,0 +1,8 @@
+---
+- name: Web role apply
+  hosts: web
+  become: true
+  roles:
+    - role: web
+      vars:
+        app_env: dev

@@ -1,0 +1,23 @@
+server {
+  listen 80;
+  server_name _;
+
+  root /var/www/html;
+  index index.php;
+
+  location = /healthz {
+    default_type application/json;
+    return 200 '{"status":"ok","service":"nginx","env":"${app_env}"}';
+  }
+
+  location / {
+    try_files $uri /index.php?$args;
+  }
+
+  location ~ \.php$ {
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    fastcgi_index index.php;
+    fastcgi_pass ${php_upstream}:9000;
+  }
+}
