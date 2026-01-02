@@ -58,3 +58,7 @@ jobs:
           name: tfplan
           path: terraform/tfplan
           if-no-files-found: error
+      
+      - name: Clean terraform dir
+        run: rm -rf .terraform
+
